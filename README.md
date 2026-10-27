@@ -1,8 +1,8 @@
-# Desafio TWR - Receptor de Webhooks 🚀
+# Desafio TWR - Receptor de Webhooks 
 
 API RESTful desenvolvida em Node.js para processamento de postbacks (webhooks) de vendas e geração de relatórios financeiros, construída como solução para o Desafio Técnico TWR.
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - **Node.js & TypeScript:** Base da aplicação, garantindo tipagem estática e segurança.
 - **Express:** Framework web para roteamento da API.
@@ -10,13 +10,13 @@ API RESTful desenvolvida em Node.js para processamento de postbacks (webhooks) d
 - **PostgreSQL (Supabase):** Banco de dados relacional hospedado na nuvem (Serverless).
 - **Render:** Plataforma de hospedagem (Deploy contínuo).
 
-## ⚙️ Arquitetura e Decisões Técnicas
+## Arquitetura e Decisões Técnicas
 
 - **Bancos Serverless & Connection Pooling:** Configuração de URLs distintas no Prisma (`DATABASE_URL` na porta 6543 com PgBouncer para alta volumetria de queries, e `DIRECT_URL` na porta 5432 para migrações estruturais seguras).
 - **Fail-Fast & Validações:** Tratamento de erros nas rotas para garantir que payloads malformados sejam rejeitados antes de onerar o banco de dados.
 - **Segurança:** Ocultação de credenciais via `.env` e bloqueio de artefatos de compilação via `.gitignore`.
 
-## 🚀 Como rodar o projeto localmente
+##  Como rodar o projeto localmente
 
 1. Clone o repositório:
 \`\`\`bash
@@ -40,7 +40,7 @@ npx prisma db push
 npm run dev
 \`\`\`
 
-## 📌 Endpoints da API
+## Endpoints da API
 
 ### 1. Receber Webhook (Criar Venda)
 - **Rota:** \`POST /webhook\`
@@ -57,13 +57,13 @@ npm run dev
 - **Rota:** \`GET /relatorio\`
 - **Retorno:** Resumo financeiro e detalhamento de vendas agrupadas por produto.
 
-## ⚠️ Aviso sobre o Deploy (Render Free Tier)
+## Aviso sobre o Deploy (Render Free Tier)
 
 Esta API está hospedada no plano gratuito do **Render**. Por padrão de infraestrutura, instâncias gratuitas entram em modo de hibernação (sleep) após 15 minutos de inatividade. 
 
 Ao realizar a primeira requisição (seja o POST do webhook ou o GET do relatório), o servidor pode levar **entre 30 a 50 segundos para "acordar" e processar a chamada**. As requisições seguintes ocorrerão instantaneamente em velocidade normal.
 
-## 🤔 Premissas e Decisões de Design (Trade-offs)
+## Premissas e Decisões de Design (Trade-offs)
 
 Para balancear a entrega de valor, estabilidade e o tempo de desenvolvimento do desafio, estabeleci algumas premissas e tomei decisões conscientes sobre o que priorizar e o que deixar de fora.
 
