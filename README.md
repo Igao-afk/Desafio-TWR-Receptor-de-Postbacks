@@ -56,3 +56,9 @@ npm run dev
 ### 2. Relatório de Vendas
 - **Rota:** \`GET /relatorio\`
 - **Retorno:** Resumo financeiro e detalhamento de vendas agrupadas por produto.
+
+## ⚠️ Aviso sobre o Deploy (Render Free Tier)
+
+Esta API está hospedada no plano gratuito do **Render**. Por padrão de infraestrutura, instâncias gratuitas entram em modo de hibernação (sleep) após 15 minutos de inatividade. 
+
+Ao realizar a primeira requisição (seja o POST do webhook ou o GET do relatório), o servidor pode levar **entre 30 a 50 segundos para "acordar" e processar a chamada**. As requisições seguintes ocorrerão instantaneamente em velocidade normal.
