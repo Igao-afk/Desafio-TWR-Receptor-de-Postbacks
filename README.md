@@ -62,3 +62,16 @@ npm run dev
 Esta API está hospedada no plano gratuito do **Render**. Por padrão de infraestrutura, instâncias gratuitas entram em modo de hibernação (sleep) após 15 minutos de inatividade. 
 
 Ao realizar a primeira requisição (seja o POST do webhook ou o GET do relatório), o servidor pode levar **entre 30 a 50 segundos para "acordar" e processar a chamada**. As requisições seguintes ocorrerão instantaneamente em velocidade normal.
+
+## 🤔 Premissas e Decisões de Design (Trade-offs)
+
+Para balancear a entrega de valor, estabilidade e o tempo de desenvolvimento do desafio, estabeleci algumas premissas e tomei decisões conscientes sobre o que priorizar e o que deixar de fora.
+
+**O que decidi implementar (e por quê):**
+- **TypeScript em Modo Estrito (`strict: true`):** Assumi a premissa de que a aplicação precisa ser escalável e à prova de bugs de tipagem, garantindo que o payload recebido seja tratado com segurança.
+- **Connection Pooling (PgBouncer) via Supabase:** Como webhooks podem gerar picos repentinos de requisições simultâneas, decidi utilizar o pooler (porta 6543) na `DATABASE_URL` para evitar o esgotamento de conexões com o banco de dados.
+
+**O que decidi NÃO fazer (e por quê):**
+- **Validação de Assinatura/Autenticação Complexa:** Decidi não implementar validações de HMAC, tokens JWT ou bloqueios por IP no endpoint `/webhook`. Como o escopo do desafio era focado em provar a capacidade de recepção e consolidação financeira, optei por focar na persistência em nuvem ao invés de criar camadas de autenticação que não foram solicitadas.
+- **Testes Automatizados (Jest/Mocha):** Optei por priorizar o deploy real em produção (Render) e a integração completa com um banco de dados serverless. Testes unitários/E2E seriam o próximo passo natural de evolução do projeto.
+- **Over-engineering de Arquitetura:** Decidi não utilizar padrões complexos como *Clean Architecture* ou *DDD (Domain-Driven Design)*. Para uma API de escopo super focado (dois endpoints), manter os controladores lógicos próximos às rotas é uma decisão muito mais pragmática, eficiente e de fácil manutenção.
