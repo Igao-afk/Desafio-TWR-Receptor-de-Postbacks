@@ -20,7 +20,7 @@ API RESTful desenvolvida em Node.js para processamento de postbacks (webhooks) d
 
 1. Clone o repositório:
 \`\`\`bash
-git clone https://github.com/SEU_USUARIO/Desafio-TWR-Receptor-de-Postbacks.git
+git clone https://github.com/Igao-afk/Desafio-TWR-Receptor-de-Postbacks.git
 \`\`\`
 
 2. Instale as dependências:
